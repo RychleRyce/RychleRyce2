@@ -53,3 +53,26 @@ def serve(path):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+    import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+# Inicializace klienta
+sg = SendGridAPIClient(api_key=os.getenv("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"))
+FROM_EMAIL = os.getenv("FROM_EMAIL", "rychleryce@gmail.com")
+
+def send_verification_email(to_email, token):
+    """Odešle ověřovací e-mail přes SendGrid."""
+    verify_url = f"https://rychleryce2.onrender.com/#?token={token}"
+    html = f"""
+    <h3>Ověřte svůj e-mail</h3>
+    <p>Klikněte na odkaz pro dokončení registrace:</p>
+    <a href="{verify_url}">{verify_url}</a>
+    """
+    mail = Mail(
+        from_email=FROM_EMAIL,
+        to_emails=to_email,
+        subject="Potvrďte svůj e-mail – Rychlé Rýče",
+        html_content=html
+    )
+    sg.send(mail)
