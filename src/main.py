@@ -70,11 +70,12 @@ def send_verification_email(to_email, token):
     <a href="{verify_url}">{verify_url}</a>
     """
     mail = Mail(
-        from_email=FROM_EMAIL,
-        to_emails=to_email,
-        subject="Potvrďte svůj e-mail – Rychlé Rýče",
-        html_content=html
-     sg.send(mail)
+    from_email=FROM_EMAIL,
+    to_emails=to_email,
+    subject="Potvrďte svůj e-mail – Rychlé Rýče",
+    html_content=html
+)
+sg.send(mail)
     from flask import request
 from src.models.user import User
 
