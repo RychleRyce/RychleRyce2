@@ -324,4 +324,17 @@ def resend_verification():
     send_verification_email(user, verification_token)
     
     return jsonify({'message': 'Verifikační email byl znovu odeslán'}), 200
+    import secrets
+from src.main import send_verification_email
+
+user = User(...)
+db.session.add(user)
+db.session.commit()
+
+# Odeslat ověřovací email
+token = secrets.token_urlsafe(32)
+user.email_token = token
+db.session.commit()
+
+send_verification_email(user.email, token)
    
