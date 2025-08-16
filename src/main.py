@@ -74,8 +74,7 @@ def send_verification_email(to_email, token):
         to_emails=to_email,
         subject="Potvrďte svůj e-mail – Rychlé Rýče",
         html_content=html
-    )
-    sg.send(mail)
+     sg.send(mail)
     from flask import request
 from src.models.user import User
 
@@ -87,3 +86,4 @@ def verify_email():
     user.email_token = None  # Vyčistit token
     db.session.commit()
     return "<h1>✅ E-mail úspěšně ověřen</h1><p>Můžete se přihlásit.</p>"
+    )
