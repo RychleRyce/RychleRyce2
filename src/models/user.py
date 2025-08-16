@@ -148,4 +148,5 @@ class Rating(db.Model):
             'worker_comment': self.worker_comment,
             'created_at': self.created_at.isoformat() if self.created_at else None
         }
-
+email_verified = db.Column(db.Boolean, default=False)
+email_token = db.Column(db.String(255), nullable=True)
