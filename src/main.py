@@ -76,3 +76,14 @@ def send_verification_email(to_email, token):
         html_content=html
     )
     sg.send(mail)
+    from flask import request
+from src.models.user import User
+
+@app.route('/verify-email')
+def verify_email():
+    token = request.args.get('token')
+    user = User.query.filter_by(email_token=token).first_or_404()
+    user.email_verified = True
+    user.email_token = None  # Vyčistit token
+    db.session.commit()
+    return "<h1>✅ E-mail úspěšně ověřen</h1><p>Můžete se přihlásit.</p>"
