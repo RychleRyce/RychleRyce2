@@ -324,6 +324,4 @@ def resend_verification():
     send_verification_email(user, verification_token)
     
     return jsonify({'message': 'Verifikační email byl znovu odeslán'}), 200
-    email_verified = db.Column(db.Boolean, default=False)
-email_token = db.Column(db.String(255), nullable=True)
-
+   
