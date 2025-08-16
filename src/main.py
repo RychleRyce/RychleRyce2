@@ -58,7 +58,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 # Inicializace klienta
-sg = SendGridAPIClient(api_key=os.getenv("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"))
+sg = SendGridAPIClient(api_key=os.getenv("SENDGRID_API_KEY"))
 FROM_EMAIL = os.getenv("FROM_EMAIL", "rychleryce@gmail.com")
 
 def send_verification_email(to_email, token):
